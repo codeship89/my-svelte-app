@@ -7,6 +7,17 @@ declare global {
 		// interface PageData {}
 		// interface Platform {}
 	}
+
+	interface Platform {
+       env: {
+           BUCKET: R2Bucket;
+       };
+       context: {
+           waitUntil(promise: Promise<any>): void;
+       };
+       caches: CacheStorage & { default: Cache }
+   }
 }
 
-export {};
+export { };
+
