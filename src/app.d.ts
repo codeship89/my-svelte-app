@@ -7,8 +7,8 @@ declare global {
 		// interface PageData {}
         interface Platform {
            env: {
+            BUCKET: R2Bucket;
             TODO_LIST: KVNamespace;
-               BUCKET: R2Bucket;
            };
            context: {
                waitUntil(promise: Promise<any>): void;
