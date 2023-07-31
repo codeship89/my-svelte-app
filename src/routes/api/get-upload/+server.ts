@@ -1,24 +1,19 @@
 // import { env } from '$env/dynamic/private';
 import type { RequestHandler } from "@sveltejs/kit";
-import { json } from "@sveltejs/kit";
 
 export const GET: RequestHandler = async ({ request, platform }) => {
-    const bucket = platform?.env.BUCKET
-
-    if (!bucket) {
-        return json({data: "no bucket"})
+    if (platform) {
+        const bucketName = "dev-svelte-app-bucket"
+        const key = `${bucketName}/demo-key.jpeg`
+        console.log("key - ", key)
+        try {
+            const res = await platform?.env.BUCKET.get(key)
+            console.log("res", res)
+            new Response(JSON.stringify({data: "got res"}))
+        } catch (error) {
+            console.log("await bucket.get error - ", error)
+        }
     }
 
-    const bucketName = "dev-svelte-app-bucket"
-
-    const key = `${bucketName}/demo-key.jpeg`
-    console.log("key - ", key)
-    try {
-        const res = await bucket.get(key)
-        console.log("res", res)
-    } catch (error) {
-        console.log("await bucket.get error - ", error)
-    }
-    
-    return json({data: `got bucket`})
+    return new Response(JSON.stringify({data: "no bucket"}))
 }
