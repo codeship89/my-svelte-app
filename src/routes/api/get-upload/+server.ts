@@ -5,7 +5,7 @@ export const GET: RequestHandler = async ({ request, platform }) => {
     if (platform) {
         // const bucketName = "dev-svelte-app-bucket"
         // const key = `${bucketName}/demo-key.jpeg`
-        const key = `demo-key.jpeg`
+        const key = "dev-svelte-app-bucket/demo-key.jpeg"
         console.log("key - ", key)
         try {
             const res = await platform.env.BUCKET.get(key)
