@@ -7,7 +7,7 @@ export const GET: RequestHandler = async ({ request, platform }) => {
         const key = `${bucketName}/demo-key.jpeg`
         console.log("key - ", key)
         try {
-            const res = await platform?.env.BUCKET.get(key)
+            const res = await platform.env.BUCKET.get(key)
             console.log("res", res)
             new Response(JSON.stringify({data: "got res"}))
         } catch (error) {
